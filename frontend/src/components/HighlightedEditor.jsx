@@ -78,7 +78,7 @@ export default function HighlightedEditor({
     }
 
     return (
-      <div className="whitespace-pre-wrap font-sans text-slate-800 leading-relaxed text-base min-h-[300px]">
+      <div className="whitespace-pre-wrap font-sans text-slate-800 leading-relaxed text-base">
         {elements}
       </div>
     );
@@ -89,7 +89,7 @@ export default function HighlightedEditor({
   const charCount = text.length;
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full min-h-[460px]">
+    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full min-h-0">
       {/* Editor Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-slate-50/60 text-xs text-slate-500 shrink-0">
         <div className="flex items-center space-x-2">
@@ -139,26 +139,26 @@ export default function HighlightedEditor({
         </div>
       </div>
 
-      {/* Editor Body (Input Section) */}
-      <div className="p-5 flex-1 relative overflow-y-auto">
+      {/* Editor Body (Scrollable Input Area) */}
+      <div className="p-5 flex-1 relative overflow-y-auto min-h-0">
         {mode === 'edit' || !hasItems ? (
           <textarea
             value={text}
             onChange={(e) => onChangeText(e.target.value)}
             placeholder="Paste your story, essay, email, or report here to analyze..."
-            className="w-full h-full min-h-[340px] resize-none outline-none border-0 text-slate-800 placeholder-slate-400 leading-relaxed text-base bg-transparent font-sans"
+            className="w-full h-full min-h-[160px] resize-none outline-none border-0 text-slate-800 placeholder-slate-400 leading-relaxed text-base bg-transparent font-sans"
             disabled={isAnalyzing}
           />
         ) : (
-          <div className="w-full h-full cursor-text" onClick={() => onSelectItem(null, -1)}>
+          <div className="w-full min-h-full cursor-text" onClick={() => onSelectItem(null, -1)}>
             {renderHighlightedContent()}
           </div>
         )}
       </div>
 
-      {/* Action Footer directly below the input section */}
+      {/* Action Footer (Fixed at the bottom of the card) */}
       {(onAnalyze || onClearText) && (
-        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between shrink-0">
+        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between shrink-0 shadow-2xs">
           <div className="flex items-center space-x-3 text-xs text-slate-500">
             <span>
               <strong className="text-slate-700 font-semibold">{wordCount}</strong> words

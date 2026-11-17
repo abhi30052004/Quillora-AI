@@ -445,7 +445,7 @@ function QuilloraMainApp() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 h-full overflow-y-auto">
+      <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
         {/* Navigation Header */}
         <Header
           activeTab={activeTab}
@@ -461,9 +461,9 @@ function QuilloraMainApp() {
         />
 
         {/* Main Workspace */}
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 flex flex-col min-h-0 overflow-hidden">
           {/* Controls Toolbar - Sample Presets */}
-          <div className="flex items-center space-x-2 flex-wrap mb-4">
+          <div className="flex items-center space-x-2 flex-wrap mb-3 shrink-0">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center">
               <BookOpen className="w-3.5 h-3.5 mr-1" /> Samples:
             </span>
@@ -494,9 +494,9 @@ function QuilloraMainApp() {
           </div>
 
           {/* 2-Column Split Workspace */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-[500px]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 flex-1 min-h-0 overflow-y-auto lg:overflow-hidden pb-1">
             {/* Left Column: Editor & Highlighting */}
-            <div className="lg:col-span-7 flex flex-col h-full">
+            <div className="lg:col-span-7 flex flex-col h-full min-h-[380px] lg:min-h-0 overflow-hidden">
               <HighlightedEditor
                 text={text}
                 onChangeText={setText}
@@ -513,7 +513,7 @@ function QuilloraMainApp() {
             </div>
 
             {/* Right Column: Interactive Results & Feedback */}
-            <div className="lg:col-span-5 flex flex-col h-full">
+            <div className="lg:col-span-5 flex flex-col h-full min-h-[380px] lg:min-h-0 overflow-hidden">
               {activeTab === 'checker' ? (
                 <WritingCheckerPanel
                   issues={checkerIssues}
