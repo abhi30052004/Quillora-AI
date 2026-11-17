@@ -31,3 +31,5 @@ dist/
 *.swo
 .DS_Store
 Thumbs.db
+
+temp_chrome_profile_*/
