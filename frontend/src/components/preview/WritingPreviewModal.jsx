@@ -102,7 +102,10 @@ export default function WritingPreviewModal({
   const currentItem = items[activeItemIndex];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 lg:p-8">
+    <div
+      id="quillora-preview-modal"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 lg:p-8"
+    >
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-fade-in"

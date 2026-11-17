@@ -333,6 +333,7 @@ function QuilloraMainApp() {
     }
     setAppliedCount((prev) => prev + applied.length);
     setSelectedId(null);
+    setIsPreviewOpen(false);
     showToast(`Successfully applied ${applied.length} change${applied.length > 1 ? 's' : ''}!`);
   };
 

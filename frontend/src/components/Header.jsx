@@ -1,34 +1,14 @@
-import React, { useState } from 'react';
-import { Feather, RefreshCw, CheckCircle2, AlertCircle, ShieldCheck, Cpu, Menu } from 'lucide-react';
-import { reloadKnowledge } from '../api';
+import React from 'react';
+import { Feather, Menu } from 'lucide-react';
 import ProfileDropdown from './profile/ProfileDropdown';
 
 export default function Header({
   activeTab,
   setActiveTab,
   health,
-  onReloadHealth,
   onToggleSidebar,
   onOpenProfile,
 }) {
-  const [reloading, setReloading] = useState(false);
-  const [reloadMsg, setReloadMsg] = useState('');
-
-  const handleReloadKnowledge = async () => {
-    try {
-      setReloading(true);
-      await reloadKnowledge();
-      await onReloadHealth();
-      setReloadMsg('Knowledge reloaded!');
-      setTimeout(() => setReloadMsg(''), 3000);
-    } catch (err) {
-      setReloadMsg('Reload failed');
-      setTimeout(() => setReloadMsg(''), 3000);
-    } finally {
-      setReloading(false);
-    }
-  };
-
   const isOnline = health?.status === 'ok';
 
   return (
@@ -83,10 +63,10 @@ export default function Header({
             </button>
           </div>
 
-          {/* Health & Knowledge Base Status + Profile */}
+          {/* Connection Status & Profile */}
           <div className="order-2 md:order-3 flex items-center space-x-2 shrink-0">
             {/* Status Indicator */}
-            <div className="hidden sm:flex items-center space-x-2 px-2 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+            <div className="hidden sm:flex items-center space-x-2 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs">
               {isOnline ? (
                 <>
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -98,29 +78,7 @@ export default function Header({
                   <span className="text-rose-600 font-medium">Offline</span>
                 </>
               )}
-
-              {health?.knowledge_loaded && (
-                <span className="flex items-center text-emerald-700 pl-1.5 border-l border-slate-200 font-medium" title="KNOWLEDGE.md is active and authoritative">
-                  <ShieldCheck className="w-3.5 h-3.5 mr-1" />
-                  KB Active
-                </span>
-              )}
             </div>
-
-            {/* Reload KB Button */}
-            <button
-              onClick={handleReloadKnowledge}
-              disabled={reloading || !isOnline}
-              title="Hot-reload KNOWLEDGE.md without restarting server"
-              className="p-1.5 sm:p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors disabled:opacity-40"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${reloading ? 'animate-spin text-sky-600' : ''}`} />
-            </button>
-            {reloadMsg && (
-              <span className="text-xs font-medium text-emerald-600 animate-fade-in hidden lg:inline">
-                {reloadMsg}
-              </span>
-            )}
 
             {/* Profile Dropdown */}
             <div className="pl-1 border-l border-slate-200">

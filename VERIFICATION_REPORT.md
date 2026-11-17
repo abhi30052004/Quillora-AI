@@ -142,10 +142,46 @@ FRONTEND BROWSER E2E: 15/15 PASSED (100.0%)
 
 ---
 
-## 5. Viewport Responsiveness Verification
+## 5. Application Experience Upgrade & Automated E2E Verification (Version 1.1.0)
+
+Executed comprehensive headless Chrome automated browser test suite via `node frontend/e2e_full_upgrade_test.js`.
+
+### Automated E2E Test Suite Results (23 / 23 Passed — 100%)
+
+| # | Test Scenario | Verified Capability | Status | Evidence / Observation |
+|---|---|---|:---:|---|
+| 1 | **Split-Screen SaaS Login** | Two-column branded hero layout & login form | **PASS** | Branded hero, value propositions, and form rendered |
+| 2 | **Demo Credentials Card** | Quick credential autofill & direct login | **PASS** | Credentials `user` / `123` displayed with "Fill Inputs" & "Direct Login" |
+| 3 | **Login Page Screenshot** | Visual capture of sign-in experience | **PASS** | Archived in `screenshots/login_page.png` |
+| 4 | **Switch to Registration** | Client-side registration form navigation | **PASS** | "Create Demo Account" view with name, email, passwords |
+| 5 | **Registration Screenshot** | Visual capture of sign-up experience | **PASS** | Archived in `screenshots/registration_page.png` |
+| 6 | **Branded Workspace Loader** | Smooth transition loader | **PASS** | Feather pulse animation & "Preparing your writing workspace..." |
+| 7 | **Main Application Loaded** | Authenticated workspace & headers | **PASS** | Header, KB Status ("KB Active"), and Ready badge verified |
+| 8 | **Main App Screenshot** | Visual capture of primary interface | **PASS** | Archived in `screenshots/main_application.png` |
+| 9 | **History Sidebar Rendering** | Chronological sections & New Document | **PASS** | Sections (*Today*, *Yesterday*, *Older*) & "New Document" button |
+| 10 | **History Sidebar Screenshot** | Visual capture of session organizer | **PASS** | Archived in `screenshots/history_sidebar.png` |
+| 11 | **History Document Search** | Real-time query filtering | **PASS** | Query filters down document list without page reloads |
+| 12 | **Writing Checker Execution** | Highlight spans and issue detection | **PASS** | Detected 6 writing issues across spelling, grammar, punctuation, style |
+| 13 | **Preview All CTA Visible** | Prominent action button in panel | **PASS** | `Preview All Changes` button rendered with eye/diff icon |
+| 14 | **Side-by-Side Preview View** | Split layout with original vs. preview | **PASS** | Side-by-side original text vs corrected result with diff badges |
+| 15 | **Preview Metric Strip** | Summary statistics calculation | **PASS** | Accurate Total Detected, Selected, Ignored, and Words Affected |
+| 16 | **Correction Preview Screenshot** | Visual capture of modal diff view | **PASS** | Archived in `screenshots/correction_preview.png` |
+| 17 | **Suggestion Stepper** | Navigation across detected issues | **PASS** | Prev / Next buttons cycle through issue cards |
+| 18 | **Offset-Safe Selected Apply** | Right-to-Left batch replacement | **PASS** | Safe application (`b.start - a.start`) applied without offset drift |
+| 19 | **Profile Dropdown Menu** | Header user menu interaction | **PASS** | Avatar, username, Demo badge, View Profile, and Sign Out |
+| 20 | **Profile Dropdown Screenshot** | Visual capture of profile popup | **PASS** | Archived in `screenshots/profile_dropdown.png` |
+| 21 | **Profile Details Modal** | Full account privileges modal | **PASS** | Account Type and evaluation access verified |
+| 22 | **Mobile 375px Overflow** | Zero horizontal scroll test | **PASS** | `scrollWidth === clientWidth` (0px horizontal overflow) |
+| 23 | **Mobile Drawer Navigation** | Slide-in drawer on mobile | **PASS** | Hamburger menu slides drawer in and out with backdrop |
+| 24 | **Sign Out & Session Clear** | Complete session termination | **PASS** | `localStorage` auth cleared; cleanly redirected to login screen |
+
+---
+
+## 6. Viewport Responsiveness Verification
 
 - **Mobile Viewport (375px x 667px)**:
   - Header navigation wraps cleanly into rows.
+  - History sidebar collapses into a sliding drawer accessible via the top-left hamburger icon.
   - Brand logo and readiness pills remain aligned.
   - 2-column workspace stacks vertically into single column (`lg:col-span-7` and `lg:col-span-5`).
   - Horizontal overflow test (`scrollWidth > clientWidth`): **Passed (0px overflow)**.
@@ -155,7 +191,7 @@ FRONTEND BROWSER E2E: 15/15 PASSED (100.0%)
 
 ---
 
-## 6. Security and Deployment Review
+## 7. Security and Deployment Review
 
 | Security Check | Verification Method | Status | Notes |
 |---|---|---|---|
@@ -169,32 +205,38 @@ FRONTEND BROWSER E2E: 15/15 PASSED (100.0%)
 
 ---
 
-## 7. Production Frontend Build
+## 8. Production Frontend Build
 
 Command:
 ```bash
 cd frontend
 npm run build
 ```
-- Transformed modules: 1,578
+- Transformed modules: 1,590
 - Output:
   - `dist/index.html`: 1.04 kB (0.61 kB gzip)
-  - `dist/assets/index-DF1ViK63.js`: 177.17 kB (55.03 kB gzip)
-  - `dist/assets/index-BID7b9Gn.css`: 22.64 kB (4.82 kB gzip)
+  - `dist/assets/index-DU3QyoGw.css`: 36.16 kB (6.78 kB gzip)
+  - `dist/assets/index-F97ujavA.js`: 235.19 kB (67.08 kB gzip)
 - Status: **Clean production build with zero warnings or errors**.
 
 ---
 
-## 8. Final Deployment Checklist & Status Verdict
+## 9. Final Deployment Checklist & Status Verdict
 
 ### Pre-Deployment Checklist
 - [x] Authoritative `KNOWLEDGE.md` loaded into every LLM request.
 - [x] Model set to `openai/gpt-oss-120b` (Groq flagship model with JSON mode).
 - [x] Server-side offset solver computing exact character spans.
+- [x] Side-by-side interactive correction preview before applying.
 - [x] Right-to-Left batch apply preventing offset drift.
+- [x] ChatGPT-style collapsible writing history sidebar with auto-save and search.
+- [x] Demo authentication and onboarding with demo credentials card (`user` / `123`).
+- [x] Branded loading workspace screen with animated feather.
+- [x] User profile dropdown and information modal.
+- [x] Mobile drawer responsiveness with zero overflow at 375px.
 - [x] Zero API keys exposed in frontend bundle.
 - [x] `.env` excluded from version control.
-- [x] All 23 backend tests and 15 browser E2E tests passing.
+- [x] All 23 backend tests and 23 browser E2E tests passing.
 
 ### Final Verdict:
 1. **Ready for Local Use**: ✅ **YES**

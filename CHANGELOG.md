@@ -1,5 +1,53 @@
 # Quillora AI — Changelog & Implementation History
 
+## [1.1.0] — 2026-11-17
+
+### Application Experience & SaaS Upgrade
+
+- **Interactive Side-by-Side Correction Preview**:
+  - Implemented `WritingPreviewModal.jsx` offering a side-by-side split view of original submitted text vs. corrected preview.
+  - Added visual diff styling (red strikethrough for removals, green highlights for additions).
+  - Added summary metric strip reporting Total Detected, Selected to Apply, Ignored, and Estimated Words Affected.
+  - Integrated suggestion stepper (Prev/Next), Accept All, Reject All, and individual toggle controls.
+  - Implemented offset-safe Right-to-Left replacement algorithm (`b.start - a.start`) ensuring zero character drift when applying selected subsets.
+  - Added prominent `Preview All Changes` button to `WritingCheckerPanel.jsx` and `Preview Enhancements` button to `WordEnhancerPanel.jsx`.
+
+- **ChatGPT-Style Writing History Sidebar**:
+  - Implemented `HistorySidebar.jsx` and `HistoryItem.jsx` with collapsible desktop view and responsive mobile drawer.
+  - Created `historyService.js` backed by `localStorage.quillora_writing_history` with initial demo writing sessions.
+  - Automatic chronological grouping into *Today*, *Yesterday*, *Previous 7 Days*, and *Older*.
+  - Added real-time document search filtering and automatic document title generation from the first sentence.
+  - Provided three-dot item management menus for inline document renaming and deletion with confirmation.
+  - Implemented debounced auto-save preserving document text, active tab mode, issues, suggestions, tone, and statistics.
+
+- **Frontend Demo Authentication & SaaS Onboarding**:
+  - Created `authService.js` and `AuthContext.jsx` with persistent demo session management (`quillora_demo_auth`).
+  - Built `LoginPage.jsx` with modern split-screen SaaS layout (left: product hero & value props, right: sign-in form).
+  - Built `DemoCredentials.jsx` featuring one-click "Fill Inputs" and direct "Login with Demo Account" for evaluation (`user` / `123`).
+  - Built `RegisterPage.jsx` with local client-side validation for account creation.
+  - Full session persistence surviving page reloads; Sign Out terminates session and redirects to sign-in.
+
+- **Branded Workspace Loading Experience**:
+  - Implemented `AppLoader.jsx` featuring animated pulsing Quillora feather logo, subtle glow, progress bar, and "Preparing your writing workspace..." status.
+  - Configured custom CSS keyframe animations in `index.css`.
+
+- **User Profile Menu & Information Modal**:
+  - Implemented `ProfileDropdown.jsx` in header displaying user avatar, name, username, and "Demo Account" badge.
+  - Implemented `ProfileModal.jsx` showing full account details, evaluation role privileges, and sign-out controls.
+
+- **Automated Verification & Artifact Generation**:
+  - Authored `frontend/e2e_full_upgrade_test.js` validating all 23 verification scenarios with 100% pass rate.
+  - Automatically captured and archived 6 high-resolution screenshots in `screenshots/`:
+    - `login_page.png`
+    - `registration_page.png`
+    - `main_application.png`
+    - `history_sidebar.png`
+    - `correction_preview.png`
+    - `profile_dropdown.png`
+  - Re-verified backend pytest suite (23/23 tests passing) and production Vite build (1,590 modules transformed, 0 errors).
+
+---
+
 ## [1.0.1] — 2026-11-17
 
 ### Production Verification & Model Alignment

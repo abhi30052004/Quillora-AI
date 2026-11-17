@@ -10,10 +10,14 @@ It offers two core features:
 
 ## Key Highlights
 
+- **Interactive Side-by-Side Correction Preview**: Preview all detected changes side-by-side with visual diff badges (red strikethrough for removals, green for additions). Includes an issue stepper, individual accept/reject toggles, summary metrics, and offset-safe batch application.
+- **ChatGPT-Style Writing History**: Collapsible document history sidebar organized chronologically into *Today*, *Yesterday*, *Previous 7 Days*, and *Older*. Features instant document search, auto-generated titles from first sentences, three-dot rename/delete menus, and localStorage autosave.
+- **Demo Authentication & SaaS Onboarding**: Split-screen SaaS authentication with built-in evaluation credentials (`user` / `123`), quick one-click direct login, registration modal with local validation, and session persistence across page refreshes.
+- **Branded Workspace Loading Experience**: Animated Quillora feather logo and progress indicator while initializing writing sessions.
 - **Authoritative Knowledge Base (`KNOWLEDGE.md`)**: Injected into every AI prompt as the single source of truth. Supports live hot-reloading without server restarts.
 - **Accurate Global Offsets**: Character offsets are calculated server-side, never trusted to the LLM. Highlights map 1:1 to original text, preventing hallucinated replacements.
 - **Intelligent Chunking**: Long documents are split into ~1,800-character chunks along paragraph and sentence boundaries, processed concurrently, and cleanly merged.
-- **Right-to-Left Safe Replacement**: When applying batch corrections or individual suggestions, downstream character offsets are dynamically adjusted so subsequent replacements remain exact.
+- **Right-to-Left Safe Replacement**: When applying batch corrections or previewed selections, downstream character offsets are dynamically adjusted so subsequent replacements remain exact.
 - **Privacy First**: User text is never saved to a database or logged. Optional MongoDB stores only non-sensitive operational metadata (word counts, processing time).
 - **Graceful Offline Mode**: Includes a deterministic rule engine for offline development and test automation when a Groq API key is not present.
 
