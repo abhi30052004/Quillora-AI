@@ -1,26 +1,26 @@
-/**
- * Quillora AI — Curated Test Samples
- */
 
 export const SAMPLE_TEXTS = {
   checker: {
-    title: "Common Mistakes Sample",
-    text: `He go to school every morning because his parents told him to. Yesterday, I hope their going to recieve the new laptop. Its a nice day outside, but I love dogs, they are cute. We must avoid the the accidental repetition. Quillora will protect our writing.`,
+    title: "Grammar & Spelling",
+    text: `Yesterday, me and my friend goes to the market. Their was many people waiting outside. I definately wanted to buy a new notebook, but I forgot to bring it's price list. The shopkeeper were very helpful, he helped us find everything. We was very tired after shopping.`,
   },
+
   enhancer: {
-    title: "Weak Vocabulary Sample",
-    text: `After running the marathon, the athlete was very tired. She got a big trophy and felt very happy with her achievement. The team manager said the results were really good, and everyone celebrated.`,
+    title: "Weak Vocabulary",
+    text: `The new project was very good and the team did a really good job. The application had a nice design and very good features. Everyone was very happy with the result. However, the project was difficult and we faced some big problems.`,
   },
+
   dialogue: {
-    title: "Dialogue & Fiction Sample",
-    text: `"Hurry up," John whispered into the dark alley. "We got to go before the night guard comes back." Mary looked at the old iron door and felt very tired. She made a quick decision and said that they should move immediately.`,
+    title: "Dialogue & Fiction",
+    text: `"Where are you going?" Sarah asked. "I am going to find the old house," Daniel replied. "You shouldn't goes there alone, its dangerous!" Suddenly, a strange shadow appeared. Neither of them know what to do. "Lets go back," Sarah whispered.`,
   },
+
   longStory: {
-    title: "Long Multi-Paragraph Story",
-    text: `The morning sun broke through the thick canopy of pines, casting dappled light across the forest trail. He go along the mossy path, admiring the birds that chirped overhead. It had been years since he last visited the valley, and the silence was soothing to his soul.
+    title: "Multi-Paragraph Story",
+    text: `Michael have planned his mountain trip for months. The weather were beautiful, and the fresh air make him happy.
 
-As he walked further, he realized that he had forgotten his compass back at the cabin. It was a very bad mistake to make in an unfamiliar wilderness. Still, he pressed on, determined to reach the summit before midday.
+After walking for hours, he realized that he had forgot his map. It was a very bad mistake. He was very tired but continued walking.
 
-"Don't worry about me," he said to himself with a grin. The breeze was brisk, and the smell of cedar filled the crisp air. Quillora had guided his thoughts earlier that morning, inspiring him to write his memoirs in this quiet haven.`,
+Finally, he reached a beautiful waterfall. "This is the most amazing place I have ever saw," he said. He decided that he will return someday because the journey was really good and exciting.`,
   },
 };

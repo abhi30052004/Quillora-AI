@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit3, CheckCircle, Eye } from 'lucide-react';
+import { Edit3, CheckCircle, Eye, Play, Sparkles, Trash2 } from 'lucide-react';
 
 export default function HighlightedEditor({
   text,
@@ -11,6 +11,8 @@ export default function HighlightedEditor({
   mode = 'edit', // 'edit' | 'review'
   setMode,
   type = 'checker', // 'checker' | 'enhancer'
+  onAnalyze,
+  onClearText,
 }) {
   // Build highlighted spans from sorted non-overlapping items
   const renderHighlightedContent = () => {
@@ -83,11 +85,13 @@ export default function HighlightedEditor({
   };
 
   const hasItems = items && items.length > 0;
+  const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const charCount = text.length;
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-full min-h-[460px]">
       {/* Editor Header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-slate-50/60 text-xs text-slate-500">
+      <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-slate-50/60 text-xs text-slate-500 shrink-0">
         <div className="flex items-center space-x-2">
           {hasItems && (
             <div className="flex bg-slate-200/80 p-0.5 rounded-lg">
@@ -124,25 +128,25 @@ export default function HighlightedEditor({
           )}
         </div>
 
-        {/* Counter Stats */}
-        <div className="flex items-center space-x-4">
+        {/* Counter Stats in Header */}
+        <div className="flex items-center space-x-3 text-slate-400">
           <span>
-            <strong className="text-slate-700">{text.trim() ? text.trim().split(/\s+/).length : 0}</strong> words
+            <strong className="text-slate-700">{wordCount}</strong> words
           </span>
-          <span className="border-l border-slate-200 pl-4">
-            <strong className="text-slate-700">{text.length}</strong> chars
+          <span className="border-l border-slate-200 pl-3">
+            <strong className="text-slate-700">{charCount}</strong> chars
           </span>
         </div>
       </div>
 
-      {/* Editor Body */}
+      {/* Editor Body (Input Section) */}
       <div className="p-5 flex-1 relative overflow-y-auto">
         {mode === 'edit' || !hasItems ? (
           <textarea
             value={text}
             onChange={(e) => onChangeText(e.target.value)}
             placeholder="Paste your story, essay, email, or report here to analyze..."
-            className="w-full h-full min-h-[360px] resize-none outline-none border-0 text-slate-800 placeholder-slate-400 leading-relaxed text-base bg-transparent font-sans"
+            className="w-full h-full min-h-[340px] resize-none outline-none border-0 text-slate-800 placeholder-slate-400 leading-relaxed text-base bg-transparent font-sans"
             disabled={isAnalyzing}
           />
         ) : (
@@ -151,6 +155,61 @@ export default function HighlightedEditor({
           </div>
         )}
       </div>
+
+      {/* Action Footer directly below the input section */}
+      {(onAnalyze || onClearText) && (
+        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between shrink-0">
+          <div className="flex items-center space-x-3 text-xs text-slate-500">
+            <span>
+              <strong className="text-slate-700 font-semibold">{wordCount}</strong> words
+            </span>
+            <span className="text-slate-300">•</span>
+            <span>
+              <strong className="text-slate-700 font-semibold">{charCount}</strong> characters
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            {text && onClearText && (
+              <button
+                type="button"
+                onClick={onClearText}
+                className="flex items-center space-x-1 px-3 py-2 rounded-xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 text-xs font-medium transition-colors"
+                title="Clear current text"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Clear</span>
+              </button>
+            )}
+
+            {onAnalyze && (
+              <button
+                type="button"
+                onClick={onAnalyze}
+                disabled={isAnalyzing || !text.trim()}
+                className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white text-sm font-semibold transition-all shadow-sm hover:shadow disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              >
+                {isAnalyzing ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Analyzing...</span>
+                  </>
+                ) : type === 'checker' ? (
+                  <>
+                    <Play className="w-4 h-4 fill-current" />
+                    <span>Check Writing</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4" />
+                    <span>Enhance Words</span>
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

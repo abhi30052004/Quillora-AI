@@ -8,35 +8,52 @@ export default function Header({
   health,
   onToggleSidebar,
   onOpenProfile,
+  isSidebarOpen = true,
 }) {
-  const isOnline = health?.status === 'ok';
-
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap md:flex-nowrap items-center justify-between py-2 md:py-0 md:h-16 gap-2">
-          {/* Brand & Sidebar Toggle */}
-          <div className="flex items-center space-x-2 sm:space-x-2.5">
+    <header className="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-xs h-auto md:h-16 flex items-center">
+      <div className="w-full px-3 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap md:flex-nowrap items-center justify-between py-2 md:py-0 h-full gap-2">
+          {/* Left: Sidebar Toggle & Context */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <button
               onClick={onToggleSidebar}
-              className="p-1.5 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+              className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
               title="Toggle writing history sidebar"
               aria-label="Toggle history sidebar"
             >
               <Menu className="w-5 h-5" />
             </button>
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
-              <Feather className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
-            </div>
-            <div>
-              <div className="flex items-center space-x-1.5">
-                <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900">Quillora AI</span>
-                <span className="text-[10px] sm:text-xs px-1.5 py-0.5 font-medium rounded-full bg-sky-50 text-sky-700 border border-sky-200">
-                  v1.0
-                </span>
+
+            {/* When sidebar is closed on desktop: show the brand in header so user still has brand recognition */}
+            {!isSidebarOpen && (
+              <div className="hidden md:flex items-center space-x-2.5">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
+                  <Feather className="w-4 h-4 stroke-[2.2]" />
+                </div>
+                <div className="flex items-center space-x-1.5">
+                  <span className="text-lg font-bold tracking-tight text-slate-900">Quillora AI</span>
+                  <span className="text-[10px] px-1.5 py-0.5 font-medium rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                    v1.0
+                  </span>
+                </div>
               </div>
-              <p className="text-[11px] text-slate-500 hidden sm:block">Authoritative English Writing Assistant</p>
+            )}
+
+            {/* On mobile: always show brand here since sidebar is in a slide-out drawer */}
+            <div className="flex md:hidden items-center space-x-2">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
+                <Feather className="w-4 h-4 stroke-[2.2]" />
+              </div>
+              <span className="text-base font-bold tracking-tight text-slate-900">Quillora AI</span>
             </div>
+
+            {/* When sidebar is open on desktop: show clean workspace indicator */}
+            {isSidebarOpen && (
+              <div className="hidden md:flex items-center space-x-2 text-xs text-slate-400">
+                <span className="font-medium text-slate-500">Writing Assistant</span>
+              </div>
+            )}
           </div>
 
           {/* Navigation Tabs */}
@@ -63,27 +80,9 @@ export default function Header({
             </button>
           </div>
 
-          {/* Connection Status & Profile */}
-          <div className="order-2 md:order-3 flex items-center space-x-2 shrink-0">
-            {/* Status Indicator */}
-            <div className="hidden sm:flex items-center space-x-2 px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-xs">
-              {isOnline ? (
-                <>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-slate-700 font-medium">Ready</span>
-                </>
-              ) : (
-                <>
-                  <span className="w-2 h-2 rounded-full bg-rose-500" />
-                  <span className="text-rose-600 font-medium">Offline</span>
-                </>
-              )}
-            </div>
-
-            {/* Profile Dropdown */}
-            <div className="pl-1 border-l border-slate-200">
-              <ProfileDropdown onOpenProfile={onOpenProfile} />
-            </div>
+          {/* Profile */}
+          <div className="order-2 md:order-3 flex items-center shrink-0">
+            <ProfileDropdown onOpenProfile={onOpenProfile} />
           </div>
         </div>
       </div>

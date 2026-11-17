@@ -4,59 +4,80 @@
 
 @layer base {
   body {
-    @apply text-slate-800 bg-slate-50 font-sans;
+    @apply text-slate-900 bg-[#F8FAFC] font-sans antialiased selection:bg-sky-500/20 selection:text-sky-950;
   }
 }
 
+/* Subtle animations for Login & Workspace */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.28;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 8s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
 /* Custom highlight styling */
-@keyframes progress {
-  0% { width: 0%; }
-  50% { width: 70%; }
-  100% { width: 100%; }
-}
-
-.animate-progress {
-  animation: progress 0.9s ease-in-out infinite;
-}
-
 .highlight-spelling {
   background-color: #fee2e2;
   border-bottom: 2px solid #ef4444;
   cursor: pointer;
-  border-radius: 2px;
-  padding: 1px 2px;
+  border-radius: 3px;
+  padding: 1px 3px;
 }
 
 .highlight-grammar {
   background-color: #fef3c7;
   border-bottom: 2px solid #f59e0b;
   cursor: pointer;
-  border-radius: 2px;
-  padding: 1px 2px;
+  border-radius: 3px;
+  padding: 1px 3px;
 }
 
 .highlight-punctuation {
   background-color: #e0f2fe;
   border-bottom: 2px solid #0284c7;
   cursor: pointer;
-  border-radius: 2px;
-  padding: 1px 2px;
+  border-radius: 3px;
+  padding: 1px 3px;
 }
 
 .highlight-style {
   background-color: #f3e8ff;
   border-bottom: 2px solid #a855f7;
   cursor: pointer;
-  border-radius: 2px;
-  padding: 1px 2px;
+  border-radius: 3px;
+  padding: 1px 3px;
 }
 
 .highlight-enhance {
   background-color: #ecfdf5;
   border-bottom: 2px solid #10b981;
   cursor: pointer;
-  border-radius: 2px;
-  padding: 1px 2px;
+  border-radius: 3px;
+  padding: 1px 3px;
 }
 
 .highlight-active {
@@ -68,13 +89,16 @@
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }

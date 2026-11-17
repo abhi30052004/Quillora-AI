@@ -457,80 +457,40 @@ function QuilloraMainApp() {
           onReloadHealth={loadHealth}
           onToggleSidebar={handleToggleSidebar}
           onOpenProfile={() => setIsProfileModalOpen(true)}
+          isSidebarOpen={isDesktopSidebarOpen}
         />
 
         {/* Main Workspace */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col">
-          {/* Controls Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-            {/* Sample Loaders */}
-            <div className="flex items-center space-x-2 flex-wrap">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center">
-                <BookOpen className="w-3.5 h-3.5 mr-1" /> Samples:
-              </span>
-              <button
-                onClick={() => handleLoadSample('checker')}
-                className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
-              >
-                Grammar Mistakes
-              </button>
-              <button
-                onClick={() => handleLoadSample('enhancer')}
-                className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
-              >
-                Weak Vocabulary
-              </button>
-              <button
-                onClick={() => handleLoadSample('dialogue')}
-                className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
-              >
-                Dialogue & Fiction
-              </button>
-              <button
-                onClick={() => handleLoadSample('longStory')}
-                className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs hidden sm:inline-block"
-              >
-                Multi-Paragraph
-              </button>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-2">
-              {text && (
-                <button
-                  onClick={handleClearText}
-                  className="flex items-center space-x-1 px-3 py-2 rounded-xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 text-xs font-medium transition-colors"
-                  title="Clear current text"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span>Clear</span>
-                </button>
-              )}
-
-              {/* Analyze CTA */}
-              <button
-                onClick={handleAnalyze}
-                disabled={isAnalyzing || !text.trim()}
-                className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white text-sm font-semibold transition-all shadow-sm hover:shadow disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isAnalyzing ? (
-                  <>
-                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Analyzing...</span>
-                  </>
-                ) : activeTab === 'checker' ? (
-                  <>
-                    <Play className="w-4 h-4 fill-current" />
-                    <span>Check Writing</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-4 h-4" />
-                    <span>Enhance Words</span>
-                  </>
-                )}
-              </button>
-            </div>
+          {/* Controls Toolbar - Sample Presets */}
+          <div className="flex items-center space-x-2 flex-wrap mb-4">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center">
+              <BookOpen className="w-3.5 h-3.5 mr-1" /> Samples:
+            </span>
+            <button
+              onClick={() => handleLoadSample('checker')}
+              className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
+            >
+              Grammar Mistakes
+            </button>
+            <button
+              onClick={() => handleLoadSample('enhancer')}
+              className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
+            >
+              Weak Vocabulary
+            </button>
+            <button
+              onClick={() => handleLoadSample('dialogue')}
+              className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs"
+            >
+              Dialogue & Fiction
+            </button>
+            <button
+              onClick={() => handleLoadSample('longStory')}
+              className="px-2.5 py-1 text-xs rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shadow-2xs hidden sm:inline-block"
+            >
+              Multi-Paragraph
+            </button>
           </div>
 
           {/* 2-Column Split Workspace */}
@@ -547,6 +507,8 @@ function QuilloraMainApp() {
                 mode={editorMode}
                 setMode={setEditorMode}
                 type={activeTab}
+                onAnalyze={handleAnalyze}
+                onClearText={handleClearText}
               />
             </div>
 
