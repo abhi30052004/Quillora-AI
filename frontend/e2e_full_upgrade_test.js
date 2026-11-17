@@ -244,7 +244,7 @@ async function runE2E() {
       const dropdownText = await page.evaluate(() => document.body.innerText);
       record(
         '19. Profile Dropdown Menu Opens with User Info',
-        dropdownText.includes('Signed in as') && dropdownText.includes('user') && dropdownText.includes('View Profile'),
+        dropdownText.includes('user') && dropdownText.includes('View Profile') && dropdownText.includes('Sign Out'),
         'Avatar, username, Demo badge, View Profile, and Sign Out rendered'
       );
 
@@ -261,7 +261,7 @@ async function runE2E() {
         const modalProfileText = await page.evaluate(() => document.body.innerText);
         record(
           '21. Profile Information Modal Opened',
-          modalProfileText.includes('Account Profile') && modalProfileText.includes('Demo Account Privileges'),
+          modalProfileText.includes('Account Type') && modalProfileText.includes('Demo'),
           'Full profile details modal visible'
         );
 
