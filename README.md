@@ -99,10 +99,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Documentation Links
 
-- [KNOWLEDGE.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/KNOWLEDGE.md) — Authoritative product rules and AI contracts
 - [ARCHITECTURE.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/ARCHITECTURE.md) — In-depth architectural design
 - [API.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/API.md) — REST API specifications and schemas
 - [SETUP.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/SETUP.md) — Comprehensive setup and deployment guide
-- [TESTING.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/TESTING.md) — Automated testing matrix and verification
-- [VERIFICATION_REPORT.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/VERIFICATION_REPORT.md) — Comprehensive final production audit and browser E2E report
 - [CHANGELOG.md](file:///c:/Users/abhijitbhunia/OneDrive%20-%20virtualemployee%20P%20Ltd/Desktop/Quillora%20AI/CHANGELOG.md) — Complete implementation log
