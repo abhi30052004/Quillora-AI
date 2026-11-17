@@ -10,6 +10,10 @@ services:
       - key: GROQ_API_KEY
         sync: false
       - key: GROQ_MODEL
-        value: openai/gpt-oss-120b
+        value: openai/gpt-oss-20b
+      - key: GROQ_FALLBACK_MODELS
+        value: openai/gpt-oss-120b,qwen/qwen3.8-27b
+      - key: FRONTEND_URL
+        value: https://quillora-ai.vercel.app
       - key: PYTHON_VERSION
         value: 3.11.0
