@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-slate-800 bg-slate-50 font-sans;
+  }
+}
+
+/* Custom highlight styling */
+@keyframes progress {
+  0% { width: 0%; }
+  50% { width: 70%; }
+  100% { width: 100%; }
+}
+
+.animate-progress {
+  animation: progress 0.9s ease-in-out infinite;
+}
+
+.highlight-spelling {
+  background-color: #fee2e2;
+  border-bottom: 2px solid #ef4444;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.highlight-grammar {
+  background-color: #fef3c7;
+  border-bottom: 2px solid #f59e0b;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.highlight-punctuation {
+  background-color: #e0f2fe;
+  border-bottom: 2px solid #0284c7;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.highlight-style {
+  background-color: #f3e8ff;
+  border-bottom: 2px solid #a855f7;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.highlight-enhance {
+  background-color: #ecfdf5;
+  border-bottom: 2px solid #10b981;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+.highlight-active {
+  box-shadow: 0 0 0 2px #0284c7;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
